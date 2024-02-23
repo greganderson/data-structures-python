@@ -13,28 +13,35 @@ class Queuey:
 
     def enqueue(self, item):
         """ Adds an item to the queue, raising a TypeError if the wrong type of item is provided """
-        # Your code goes here
-        raise NotImplementedError()
+        if not isinstance(item, self.data_type):
+            raise TypeError(f"Invalid type provided, expected type {self.data_type} but got {type(item)}")
+
+        self.q.append(item)
+        self.size += 1
 
     def dequeue(self):
         """ Removes the next item in the queue and returns it """
-        # Your code goes here
-        raise NotImplementedError()
+        if self.size == 0:
+            return None
+
+        item = self.q[0]
+        self.q = self.q[1:]
+        self.size -= 1
+
+        return item
 
     def peek(self):
         """ Returns the next item in the queue, but does not remove it """
-        # Your code goes here
-        raise NotImplementedError()
+        return self.q[0] if self.size > 0 else None
 
     def length(self) -> int:
         """ Returns the size of the queue """
-        # Your code goes here
-        raise NotImplementedError()
+        return self.size
 
     def clear(self) -> None:
         """ Removes all items from the queue """
-        # Your code goes here
-        raise NotImplementedError()
+        self.q.clear()
+        self.size = 0
 
 def main():
     q = Queuey(float)
