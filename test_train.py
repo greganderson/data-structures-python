@@ -1,5 +1,3 @@
-import pytest
-
 from train import TrainCar, Train
 
 
@@ -54,9 +52,15 @@ def test_insert():
     while c.next_car != None and c.contents != "Contents 5":
         c = c.next_car
     
+
+    assert test_train.head_car.next_car.next_car.next_car.next_car.next_car.contents == "Contents 5"
+
     new_car = TrainCar("New car")
     test_train.insert(c, new_car)
+    assert test_train.size == 10
 
-    assert test_train.size == 11
-    assert test_train.head_car.next_car.next_car.next_car.next_car.contents == "Content 5"
-    assert test_train.head_car.next_car.next_car.next_car.next_car.contents == "New car"
+    c = test_train.head_car
+    while c.next_car != None:
+        c = c.next_car
+
+    assert c == new_car
