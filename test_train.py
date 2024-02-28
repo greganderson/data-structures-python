@@ -3,7 +3,7 @@ import pytest
 from train import TrainCar, Train
 
 
-def test_add_front(setup_train):
+def test_add_front():
     test_train = Train()
 
     test_car_1_contents = "Harry Potter and friends"
