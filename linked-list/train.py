@@ -60,13 +60,51 @@ class Train:
         return None
 
     def remove_front(self) -> bool:
-        """ Removes the front train car from the train """
-        pass
+        """ Removes the front train car from the train. Returns True if it succeeds, False if there are no cars to remove. """
+        if self.size == 0:
+            return False
+
+        self.head_car = self.head_car.next_car
+        self.size -= 1
+        return True
 
     def remove_back(self) -> bool:
         """ Removes the back train car from the train """
-        pass
+        if self.size == 0:
+            return False
 
-    def remove(self, car: TrainCar) -> bool:
-        """ Removes the target train car from the train, attaching the car behind it to the car in front of it """
-        pass
+        if self.size == 1:
+            self.head_car = None
+            self.size -= 1
+            return True
+
+        current_car = self.head_car
+
+        while current_car.next_car.next_car != None:
+            current_car = current_car.next_car
+
+        current_car.next_car = None
+        self.size -= 1
+
+        return True
+
+    def remove(self, car: TrainCar) -> None:
+        """
+        Removes the target train car from the train, attaching the car behind it to the car in front of it.
+        Car cannot be None.
+        """
+        if self.head_car == car:
+            if self.head_car.next_car is not None:
+                self.head_car = self.head_car.next_car
+                self.size -= 1
+            else:
+                self.head_car = None
+                self.size = 0
+            return
+
+        current_car = self.head_car
+        while current_car.next_car != car:
+            current_car = current_car.next_car
+
+        current_car.next_car = car.next_car
+        self.size -= 1
