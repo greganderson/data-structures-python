@@ -1,6 +1,6 @@
 import pytest
 
-from binary_tree import BinaryTree
+from bst import BinaryTree
 
 
 @pytest.fixture
