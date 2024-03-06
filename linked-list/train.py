@@ -11,13 +11,13 @@ class Train:
     def __init__(self):
         self.head_car = None
         self.size = 0
-    
+
     def add_front(self, car: TrainCar):
         """ Adds the train car at the front of the train """
         car.next_car = self.head_car
         self.head_car = car
         self.size += 1
-    
+
     def add_back(self, car: TrainCar) -> None:
         """ Adds the train car at the end of the train """
         if self.head_car == None:
@@ -26,7 +26,7 @@ class Train:
             current_car = self.head_car
             while current_car.next_car != None:
                 current_car = current_car.next_car
-            
+
             current_car.next_car = car
 
         self.size += 1
@@ -35,7 +35,7 @@ class Train:
         """
         Attaches the new car to the 'front_car', replacing the car that used to be attached to 'front_car'. That will now
         be attached to the new car.
-        
+
         NOTE: front_car cannot be None.
 
         :param front_car: Car that we are attaching to (cannot be None)
